@@ -1,4 +1,4 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Image, Text } from "@chakra-ui/react";
 
 const HomePageSingleCard = ({
      GenericName,
@@ -11,13 +11,16 @@ const HomePageSingleCard = ({
      updatedAt
 }) => {
      return (
-          <Box p={2} width='300px' border='1px solid red' display='flex' flex>
-               <Box w='90%'>
-                    <Image width='100%' src={picture} alt={name} />
+          <Box p={2} display='flex' flexDir={'column'} border={'1px solid gray'} m={1} bg={'white'} borderRadius={'10px'}>
+               <Box height={'200px'} w='100%' m={'auto'}>
+                    <Image width='100%' maxH={'100%'} src={picture} alt={name} />
                </Box>
-               <Box>
-                    <Text>{name}</Text>
-                    <Text>{GenericName}</Text>
+               <Box display={'flex'} flexDir={'column'}>
+                    <Text fontSize={'110%'} fontWeight={500}>{name}</Text>
+                    <Text fontSize={'110%'} fontWeight={500}>{GenericName}</Text>
+               </Box>
+               <Box display='flex' justifyContent='center' alignItems='center' p={2}>
+                    <Button bg={'yellow.400'} size={'md'} fontWeight={500}>Add To Cart</Button>
                </Box>
           </Box>
      );
