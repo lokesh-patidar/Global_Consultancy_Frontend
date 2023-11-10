@@ -42,7 +42,7 @@ export const loginFunction = (payload, navigate, setLoading, resetFormData) => (
     axios.post(`${api}/login`, payload)
         .then((response) => {
             console.log({ response });
-            localStorage.setItem("qurinomToken", response?.data?.token);
+            localStorage.setItem("global_Consultancy_token", response?.data?.token);
             dispatch(loginSuccess(response?.data));
             toast.success(response?.data?.message, {
                 autoClose: 1500,
@@ -57,7 +57,7 @@ export const loginFunction = (payload, navigate, setLoading, resetFormData) => (
             setLoading(false);
             resetFormData();
             getUserProfileFunc();
-            navigate(`/dashboard`);
+            navigate(`/`);
         })
         .catch((e) => {
             setLoading(false);

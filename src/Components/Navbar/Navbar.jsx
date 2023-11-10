@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { getUserProfileFunc } from '../../ReduxToolkit/UserProfile/userProfileActions';
 import { BsCart3 } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 
 export default function Navbar() {
@@ -56,8 +57,12 @@ export default function Navbar() {
                         <span style={{ margin: 'auto', fontWeight: '500' }}>My Account</span>
                     </MenuButton>
                     <MenuList>
-                        <MenuItem>My Account</MenuItem>
-                        <MenuItem>Sign In</MenuItem>
+                        <Link to='/login'>
+                            <MenuItem>My Account</MenuItem>
+                        </Link>
+                        <Link to='/login'>
+                            <MenuItem>Sign In</MenuItem>
+                        </Link>
                     </MenuList>
                 </Menu>
                 <Menu>

@@ -15,6 +15,7 @@ import {
      InputLeftElement,
      Avatar,
      Stack,
+     Heading,
 } from '@chakra-ui/react';
 import {
      MdOutlineEmail,
@@ -32,7 +33,7 @@ const LoginPage = () => {
      const dispatch = useDispatch();
      const [show, setShow] = useState(false);
      const [loading, setLoading] = useState(false);
-     const token = localStorage.getItem("qurinomToken");
+     const token = localStorage.getItem("global_Consultancy_token");
 
 
      const [formData, setFormData] = useState({
@@ -79,97 +80,69 @@ const LoginPage = () => {
 
      useEffect(() => {
           if (!token) {
-               navigate(`/`);
+               navigate(`/login`);
           }
           else {
-               navigate(`/dashboard`);
+               navigate(`/`);
           }
      }, [token]);
 
      return (
-          <Container bg="#9DC4FB" maxW="full" h='100vh' mt={0} centerContent overflow="hidden">
-               <Flex pt={10}>
-                    <Box
-                         bg="#02054B"
-                         color="white"
-                         borderRadius="lg"
-                         m={{ sm: 4, md: 16, lg: 10 }}
-                         p={{ sm: 5, md: 5, lg: 16 }}
-                    >
-                         <Box p={4}>
-                              <Box spacing={{ base: 20, sm: 3, md: 5, lg: 20 }} display='flex' flexDir={{ base: 'column', md: 'row' }}>
-                                   <Box>
-                                        <Box w='100%' display='flex' flexDir={{ base: 'row', md: 'column' }} p={2} pr={{ base: 'auto', md: 5 }} justifyContent={{ base: 'center', md: 'left' }}>
-                                             <Box display='flex' flexDir={'column'}>
-                                                  <Avatar size={{ base: 'xl', md: '2xl' }} borderRadius={0} src='icon.jfif' />
-                                             </Box>
-                                             <Box pl={{ base: 2, md: 'auto' }}>
-                                                  <Text fontSize={'150%'}>Qurinom</Text>
-                                                  <Text fontSize={'150%'}>Solutions</Text>
-                                             </Box>
-                                        </Box>
-                                   </Box>
-                                   <Box display='flex'>
-                                        <Box bg="white" borderRadius="lg" w={'full'}>
-                                             <Box m={8} color="#0B0E3F">
-                                                  <Text fontSize={'150%'} fontWeight={'bold'} mb={2} color={'teal'}>Login</Text>
-                                                  <VStack spacing={3}>
-                                                       <FormControl id="name">
-                                                            <FormLabel>Mail</FormLabel>
-                                                            <InputGroup borderColor="#E0E1E7">
-                                                                 <InputLeftElement pointerEvents="none">
-                                                                      <MdOutlineEmail color="gray.800" />
-                                                                 </InputLeftElement>
-                                                                 <Input
-                                                                      size={'md'}
-                                                                      type="email"
-                                                                      value={formData?.email}
-                                                                      name='email'
-                                                                      placeholder='Enter email'
-                                                                      onChange={handleInputChange}
-                                                                 />
-                                                            </InputGroup>
-                                                       </FormControl>
-                                                       <FormControl id="name">
-                                                            <FormLabel>Password</FormLabel>
-                                                            <InputGroup borderColor="#E0E1E7">
-                                                                 <InputLeftElement onClick={handleClick}>
-                                                                      {show ? <ViewOffIcon cursor='pointer' /> : <ViewIcon cursor='pointer' />}
-                                                                 </InputLeftElement>
-                                                                 <Input
-                                                                      size={'md'}
-                                                                      value={formData?.password}
-                                                                      name='password'
-                                                                      type={show ? 'text' : 'password'}
-                                                                      placeholder='Enter password'
-                                                                      onChange={handleInputChange}
-                                                                 />
-                                                            </InputGroup>
-                                                       </FormControl>
-                                                       <FormControl id="name" float="right">
-                                                            <Button
-                                                                 variant="solid"
-                                                                 bg="#0D74FF"
-                                                                 color="white"
-                                                                 onClick={() => handleSignIn()}
-                                                                 isLoading={loading}>
-                                                                 Sign In
-                                                            </Button>
-                                                       </FormControl>
-                                                  </VStack>
-                                                  <Stack pt={6}>
-                                                       <Text align={'center'}>
-                                                            Don't have an account? <Link to='/register' color={'blue.400'}><span style={{ color: 'blue' }}>Register</span></Link>
-                                                       </Text>
-                                                  </Stack>
-                                             </Box>
-                                        </Box>
-                                   </Box>
+          <Box w={{ base: '90%', md: '70%', lg: '60%', xl: '55%' }} m={'auto'}>
+               <Box spacing={{ base: 20, sm: 3, md: 5, lg: 20 }} display='flex' flexDir={{ base: 'column', md: 'row' }}>
+                    <Box display='flex' w={'full'}>
+                         <Box borderRadius="lg" w={'full'}>
+                              <Box m={8}>
+                                   <Heading mt={3} mb={5} as={'h1'} fontSize={{ base: '130%', md: '140%', lg: '200%', xl: '250%' }} fontWeight={'bold'}>Customer Login</Heading>
+                                   <VStack spacing={3}>
+                                        <FormControl>
+                                             <FormLabel>Email</FormLabel>
+                                             <Input
+                                                  size={'md'}
+                                                  type="email"
+                                                  value={formData?.email}
+                                                  name='email'
+                                                  placeholder='Enter email'
+                                                  onChange={handleInputChange}
+                                             />
+                                        </FormControl>
+                                        <FormControl>
+                                             <FormLabel>Password</FormLabel>
+                                             <InputGroup borderColor="#E0E1E7">
+                                                  <InputLeftElement onClick={handleClick}>
+                                                       {show ? <ViewOffIcon cursor='pointer' /> : <ViewIcon cursor='pointer' />}
+                                                  </InputLeftElement>
+                                                  <Input
+                                                       size={'md'}
+                                                       value={formData?.password}
+                                                       name='password'
+                                                       type={show ? 'text' : 'password'}
+                                                       placeholder='Enter password'
+                                                       onChange={handleInputChange}
+                                                  />
+                                             </InputGroup>
+                                        </FormControl>
+                                        <FormControl float="right">
+                                             <Button
+                                                  variant="solid"
+                                                  bg="#0D74FF"
+                                                  color="white"
+                                                  onClick={() => handleSignIn()}
+                                                  isLoading={loading}>
+                                                  Sign In
+                                             </Button>
+                                        </FormControl>
+                                   </VStack>
+                                   <Stack pt={6}>
+                                        <Text align={'center'}>
+                                             Create account and register? <Link to='/register' color={'blue.400'}><span style={{ color: 'blue' }}>Register</span></Link>
+                                        </Text>
+                                   </Stack>
                               </Box>
                          </Box>
                     </Box>
-               </Flex>
-          </Container>
+               </Box>
+          </Box>
      );
 };
 
