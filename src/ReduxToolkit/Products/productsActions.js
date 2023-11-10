@@ -60,46 +60,6 @@ export const getProductByIdFunc = (id, navigate) => (dispatch) => {
 
 
 
-export const addProductFunc = (payload, navigate, onClose, resetFormData, setLoad) => async (dispatch) => {
-    const token = localStorage.getItem("global_Consultancy_token");
-    axios.post(`${api}/create-product`, payload, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    })
-        .then((response) => {
-            toast.success(response?.data?.message, {
-                autoClose: 1500,
-                position: 'top-center',
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: false,
-            });
-            dispatch(getAllProductsFunc(navigate));
-        })
-        .then(() => {
-            setLoad(false);
-            resetFormData();
-            onClose();
-        })
-        .catch((e) => {
-            console.log({ e });
-            setLoad(false);
-            if (e?.response?.data?.message === 'Token expired') {
-                navigate('/');
-            }
-            else {
-                toast.error(e?.response?.data?.message || e?.message, {
-                    autoClose: 1500,
-                    position: 'top-center',
-                });
-            }
-        });
-};
-
-
-
 export const deleteProductFunc = (id, navigate) => async (dispatch) => {
     const token = localStorage.getItem("global_Consultancy_token");
     if (id) {

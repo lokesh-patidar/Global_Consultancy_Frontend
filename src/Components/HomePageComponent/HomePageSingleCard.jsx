@@ -1,6 +1,8 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const HomePageSingleCard = ({
+     _id,
      GenericName,
      createdAt,
      description,
@@ -20,7 +22,9 @@ const HomePageSingleCard = ({
                     <Text fontSize={'110%'} fontWeight={500}>{GenericName}</Text>
                </Box>
                <Box display='flex' justifyContent='center' alignItems='center' p={2}>
-                    <Button bg={'yellow.400'} size={'md'} fontWeight={500}>Add To Cart</Button>
+                    <Link to={`/${_id}`}>
+                         <Button bg={'yellow.400'} size={'md'} fontWeight={500}>Add To Cart</Button>
+                    </Link>
                </Box>
           </Box>
      );
