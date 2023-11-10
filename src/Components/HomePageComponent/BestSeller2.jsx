@@ -47,7 +47,7 @@ const BestSeller2 = () => {
                               gap="2"
                               p="2"
                          >
-                              {new Array(5).fill(0).map((e, i) => (
+                              {new Array(2).fill(0).map((e, i) => (
                                    <Box w=" 100%" m="auto" boxShadow="lg" bg="white" key={i}>
                                         <Skeleton size="15" h="150px" />
                                         <SkeletonText
