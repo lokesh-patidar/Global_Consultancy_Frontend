@@ -1,17 +1,18 @@
 import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, deleteCartItem, getAllCartItemsFunc, increaseQuantity } from "../ReduxToolkit/Cart/cartActions";
+import { decreaseQuantity, deleteCartItem, getAllCartItemsFunc, increaseQuantity, placeOrder } from "../ReduxToolkit/Cart/cartActions";
 import { useEffect, useMemo, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 
 const Cart = () => {
 
      const dispatch = useDispatch();
+     const navigate = useNavigate();
      const { allCartItems } = useSelector(state => state.cartSlice);
      const [total, setTotal] = useState(0);
-     console.log({ allCartItems });
 
      const handleQuantityDecrease = (id) => {
           dispatch(decreaseQuantity(id));
@@ -25,6 +26,9 @@ const Cart = () => {
           dispatch(deleteCartItem(id));
      };
 
+     const placeOrderFunc = () => {
+          dispatch(placeOrder(navigate));
+     };
 
      useEffect(() => {
           dispatch(getAllCartItemsFunc());
@@ -79,7 +83,7 @@ const Cart = () => {
                               <Text display='flex'>Sub-total: {total || 0}</Text>
                               <Heading fontWeight={500} display='flex' fontSize={'120%'} as={'h3'}>Order Total</Heading>
                               <Text display='flex'>Total: {total || 0}</Text>
-                              <Button mt={5} bg={'yellow.400'} size={'md'}>Place Order</Button>
+                              <Button mt={5} bg={'yellow.400'} size={'md'} onClick={placeOrderFunc}>Place Order</Button>
                          </Box>
                     </Box>
                </Box>

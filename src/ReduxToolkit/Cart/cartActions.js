@@ -115,3 +115,28 @@ export const deleteCartItem = (productId) => async (dispatch) => {
           });
 };
 
+
+export const placeOrder = (navigate) => async (dispatch) => {
+     const token = localStorage.getItem("global_Consultancy_token");
+     axios.post(`${api}/place-order`, null, {
+          headers: {
+               Authorization: `Bearer ${token}`,
+          },
+     })
+          .then((response) => {
+               console.log({ response });
+               toast.success(response?.data?.message, {
+                    autoClose: 1500,
+                    position: 'top-center',
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: false,
+               });
+               dispatch(getAllCartItemsFunc());
+               navigate('/')
+          })
+          .catch((e) => {
+               console.log({ e });
+          });
+};
