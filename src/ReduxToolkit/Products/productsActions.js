@@ -27,10 +27,6 @@ export const getAllProductsFunc = (navigate) => (dispatch) => {
         .catch((e) => {
             console.log({ e });
             dispatch(getProductFailure(e?.response?.data?.message || e?.message));
-            toast.error(e?.response?.data?.message || e?.message, {
-                autoClose: 1500,
-                position: 'top-center',
-            });
         });
 };
 
@@ -51,9 +47,6 @@ export const getProductByIdFunc = (id, navigate) => (dispatch) => {
             .catch((e) => {
                 console.log({ e });
                 dispatch(getProductByIdFailure(e));
-                if (e?.response?.data?.message === 'Token expired') {
-                    navigate('/');
-                }
             });
     }
 };

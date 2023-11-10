@@ -42,7 +42,7 @@ const BestSeller2 = () => {
                               }}
                               m="auto"
                               templateColumns={{
-                                   base: "repeat(5,1fr)",
+                                   base: "repeat(2,1fr)",
                               }}
                               gap="2"
                               p="2"
